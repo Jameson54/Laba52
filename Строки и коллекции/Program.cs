@@ -8,7 +8,8 @@ class Program
 {
   static void Main()
   {
-    Dictionary<string, string> errorWords = new Dictionary<string, string>()
+    Dictionary<string, string> errorWords;
+    errorWords = new Dictionary<string, string>()
         {
             { "привет-привет-пирвет", "привет" },
             { "пирвет", "привет" },
@@ -19,7 +20,8 @@ class Program
             { "гигабайсе", "GitHub" }
         };
 
-    string directoryPath = @"C:\Users\Администратор\Desktop\Test";
+    string directoryPath;
+    directoryPath = @"C:\Users\Администратор\Desktop\Test";
 
     if (!Directory.Exists(directoryPath))
     {
