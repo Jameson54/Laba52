@@ -37,15 +37,17 @@ class Program
 
     foreach (string filePath in files)
     {
+      string content;
       Console.WriteLine("\nОбработка: " + Path.GetFileName(filePath));
 
-      string content = File.ReadAllText(filePath);
+      content = File.ReadAllText(filePath);
 
-      foreach (var pair in errorWords)
+      foreach (KeyValuePair<string, string> pair in errorWords)
       {
+        content = content;
         if (content.Contains(pair.Key))
         {
-          content = content.Replace(pair.Key, pair.Value);
+          content.Replace(pair.Key, pair.Value);
           Console.WriteLine("  Исправлено: " + pair.Key + " -> " + pair.Value);
         }
       }
