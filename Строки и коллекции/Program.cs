@@ -44,10 +44,9 @@ class Program
 
       foreach (KeyValuePair<string, string> pair in errorWords)
       {
-        content = content;
         if (content.Contains(pair.Key))
         {
-          content.Replace(pair.Key, pair.Value);
+          content = content.Replace(pair.Key, pair.Value);
           Console.WriteLine("  Исправлено: " + pair.Key + " -> " + pair.Value);
         }
       }
@@ -57,7 +56,6 @@ class Program
 
       if (Regex.IsMatch(content, pattern))
       {
-        string oldContent = content;
         content = Regex.Replace(content, pattern, replacement);
         Console.WriteLine("  Найдены и исправлены номера телефонов");
       }
