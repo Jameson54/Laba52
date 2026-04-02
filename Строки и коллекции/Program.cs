@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 
 class Program
@@ -27,7 +28,8 @@ class Program
       return;
     }
 
-    string[] files = Directory.GetFiles(directoryPath, "*.txt");
+    string[] files;
+    files = Directory.GetFiles(directoryPath, "*.txt");
 
     if (files.Length == 0)
     {
@@ -35,11 +37,11 @@ class Program
       return;
     }
 
+    string content;
+
     foreach (string filePath in files)
     {
-      string content;
       Console.WriteLine("\nОбработка: " + Path.GetFileName(filePath));
-
       content = File.ReadAllText(filePath);
 
       foreach (KeyValuePair<string, string> pair in errorWords)
@@ -51,8 +53,10 @@ class Program
         }
       }
 
-      string pattern = @"\((\d{3})\)\s*(\d{3})-(\d{2})-(\d{2})";
-      string replacement = "+380 $1 $2 $3 $4";
+      string replacement;
+      string pattern;
+      pattern = @"\((\d{3})\)\s*(\d{3})-(\d{2})-(\d{2})";
+      replacement = "+380 $1 $2 $3 $4";
 
       if (Regex.IsMatch(content, pattern))
       {
